@@ -1,0 +1,10 @@
+input {
+  display: block;
+  margin: 10px 0;
+}
+
+span {
+  color: red;
+  display: block;
+  font-size: small;
+}
