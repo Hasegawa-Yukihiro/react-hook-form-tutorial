@@ -6,12 +6,9 @@ const Form = () => {
   const {
     register,
     handleSubmit,
-    watch,
     onSubmit,
     formState: { errors },
   } = useHooks();
-
-  console.log(watch("name"));
 
   return (
     <div style={{ width: "80%", margin: "0 auto" }}>
@@ -22,6 +19,9 @@ const Form = () => {
         {errors.name && <span>入力必須項目です</span>}
         <label>フリガナ</label>
         <input {...register("furigana", { required: true })} />
+        {errors.furigana && <span>入力必須項目です</span>}
+        <label>メールアドレス</label>
+        <input {...register("email", { required: true })} />
         {errors.furigana && <span>入力必須項目です</span>}
         <input type="submit" />
       </form>

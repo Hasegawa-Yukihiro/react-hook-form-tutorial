@@ -5,16 +5,16 @@ export const useHooks = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<Inputs>({
+    mode: "onChange",
+  });
 
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
   return {
     register,
     handleSubmit,
-    watch,
     onSubmit,
     formState: { errors },
   };
