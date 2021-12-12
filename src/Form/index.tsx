@@ -21,8 +21,17 @@ const Form = () => {
         <input {...register("furigana", { required: true })} />
         {errors.furigana && <span>入力必須項目です</span>}
         <label>メールアドレス</label>
-        <input {...register("email", { required: true })} />
-        {errors.furigana && <span>入力必須項目です</span>}
+        <input
+          {...register("email", {
+            required: true,
+            pattern:
+              /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}.[A-Za-z0-9]{1,}$/,
+          })}
+        />
+        {errors.email?.type === "required" && <span>入力必須項目です</span>}
+        {errors.email?.type === "pattern" && (
+          <span>不適切なメールアドレスです</span>
+        )}
         <input type="submit" />
       </form>
     </div>

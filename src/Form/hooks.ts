@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Inputs } from "./type";
 
@@ -10,7 +11,10 @@ export const useHooks = () => {
     mode: "onChange",
   });
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = useCallback(
+    (data) => console.log(data),
+    []
+  );
 
   return {
     register,
