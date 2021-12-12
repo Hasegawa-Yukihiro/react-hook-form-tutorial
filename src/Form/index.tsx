@@ -18,8 +18,16 @@ const Form = () => {
         <input {...register("name", { required: true })} />
         {errors.name && <span>入力必須項目です</span>}
         <label>フリガナ</label>
-        <input {...register("furigana", { required: true })} />
-        {errors.furigana && <span>入力必須項目です</span>}
+        <input
+          {...register("furigana", {
+            required: true,
+            pattern: /^[ァ-ヶー]*$/,
+          })}
+        />
+        {errors.furigana?.type === "required" && <span>入力必須項目です</span>}
+        {errors.furigana?.type === "pattern" && (
+          <span>カタカナで入力してください。</span>
+        )}
         <label>メールアドレス</label>
         <input
           {...register("email", {
@@ -31,6 +39,17 @@ const Form = () => {
         {errors.email?.type === "required" && <span>入力必須項目です</span>}
         {errors.email?.type === "pattern" && (
           <span>不適切なメールアドレスです</span>
+        )}
+        <label>問い合わせ内容</label>
+        <textarea
+          {...register("inquiry", { required: true, maxLength: 100 })}
+          style={{ padding: 5 }}
+          cols={30}
+          rows={10}
+        />
+        {errors.inquiry?.type === "required" && <span>入力必須項目です</span>}
+        {errors.inquiry?.type === "maxLength" && (
+          <span>問い合わせ内容は100文字以内でお願いします。</span>
         )}
         <input type="submit" />
       </form>
